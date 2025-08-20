@@ -34,6 +34,12 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Env files
+.env
+*.env
+lib/assits/.env
+
+
 # Symbolication related
 app.*.symbols
 
@@ -44,3 +50,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.env
