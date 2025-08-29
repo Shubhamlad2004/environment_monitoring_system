@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -7,10 +6,8 @@ import 'models/sensor_model.dart';
 import 'page/home.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: "assets/.env"); 
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -24,6 +21,10 @@ class _MyAppState extends State<MyApp> {
   String lastUpdated = "";
   bool isLoading = false;
 
+  // ✅ Use dart-define instead of dotenv
+  static const String channelId = String.fromEnvironment("CHANNEL_ID");
+  static const String apiKey = String.fromEnvironment("API_KEY");
+
   @override
   void initState() {
     super.initState();
@@ -32,9 +33,6 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> fetchData() async {
     setState(() => isLoading = true);
-
-    final String channelId = dotenv.env['CHANNEL_ID'] ?? "";
-    final String apiKey = dotenv.env['API_KEY'] ?? "";
 
     final String url =
         "https://api.thingspeak.com/channels/$channelId/feeds.json?api_key=$apiKey&results=50";
