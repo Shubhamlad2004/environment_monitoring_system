@@ -7,7 +7,7 @@ import 'models/sensor_model.dart';
 import 'page/home.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: "lib/assets/.env"); 
+  await dotenv.load(fileName: "assets/.env"); 
   runApp(const MyApp());
 }
 
